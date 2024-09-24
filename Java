@@ -1,0 +1,42 @@
+usuario
+
+package poo5;
+
+public class usuario {
+}
+import lombok.getter;
+import lombok.setter;
+import lombok.getter;
+
+@ private string cpf;
+@ private string nome ;
+@ private string email ;
+@ private string email ;
+
+
+usuariorepository
+
+package br.com.lupa.repositories;
+import br.com
+public class usuariorepository {
+
+extends jparepository<usuario,string>
+}
+
+
+usuarioservice
+
+package poo5;
+
+
+public class usuarioservice {
+
+  private final usuariorepository  ;
+
+  public usuarioservice(usuariorepository usuario repository){this.usuariorepository = usuariorepository;}
+
+  public usuario salvar(usuario)
+  return usuariorepository.save(usuario);
+
+
+}

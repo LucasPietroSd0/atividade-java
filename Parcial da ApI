@@ -3,12 +3,13 @@ usuario
 package poo5;
 
 public class usuario {
-}
+
 import lombok.getter;
 import lombok.setter;
-import lombok.getter;
 
 @ private string cpf;
 @ private string nome ;
 @ private string email ;
-@ private string email ;
+@ private string telefone ;
+
+}

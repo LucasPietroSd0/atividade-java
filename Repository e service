@@ -1,0 +1,94 @@
+Mavem pom.xml
+<dependency>
+    <groupId>org.projectlombok</groupId>
+    <artifactId>lombok</artifactId>
+    <version>1.18.26</version>
+    <scope>provided</scope>
+</dependency>
+
+Grandle
+
+dependencies {
+    compileOnly 'org.projectlombok:lombok:1.18.26'
+    annotationProcessor 'org.projectlombok:lombok:1.18.26'
+}
+
+Repositorio pra evento
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface EventoRepository extends JpaRepository<Evento, Long> {
+    // Aqui você pode adicionar consultas customizadas se necessário
+}
+
+Repositorio para usuário 
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
+    // Consultas customizadas, se necessário
+}
+
+Serviço usando lombok
+
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+import java.util.List;
+
+@Service
+@RequiredArgsConstructor
+public class EventoService {
+
+    private final EventoRepository eventoRepository;
+
+    public List<Evento> listarTodos() {
+        return eventoRepository.findAll();
+    }
+
+    public Evento salvarEvento(Evento evento) {
+        return eventoRepository.save(evento);
+    }
+
+    public void excluirEvento(Long id) {
+        eventoRepository.deleteById(id);
+    }
+
+    public Evento buscarPorId(Long id) {
+        return eventoRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Evento não encontrado"));
+    }
+}
+
+Serviço para usuários 
+
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+import java.util.List;
+
+@Service
+@RequiredArgsConstructor
+public class UsuarioService {
+
+    private final UsuarioRepository usuarioRepository;
+
+    public List<Usuario> listarTodos() {
+        return usuarioRepository.findAll();
+    }
+
+    public Usuario salvarUsuario(Usuario usuario) {
+        return usuarioRepository.save(usuario);
+    }
+
+    public void excluirUsuario(Long id) {
+        usuarioRepository.deleteById(id);
+    }
+
+    public Usuario buscarPorId(Long id) {
+        return usuarioRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
+    }
+}
